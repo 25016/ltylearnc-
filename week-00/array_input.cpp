@@ -2,7 +2,7 @@
  * @Author: 25016 799197262@qq.com
  * @Date: 2026-08-26 17:22:03
  * @LastEditors: 25016 799197262@qq.com
- * @LastEditTime: 2026-09-10 10:38:04
+ * @LastEditTime: 2026-09-20 09:26:40
  * @FilePath: /ad-training/week-00/array_input.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -34,18 +34,26 @@ int find_min_latency_index(const int latencies[], int size)
     return min_latency_index;
 }
 
-int sort(latencies[i],i)
+void sort_latencies(int latencies[], int size)
 {
-
-for(int i=0; i<size; i++)
-
-{
-
-
-
+    bool swapped = false;
+    for (int pass = 0; pass < size - 1; pass++) {
+        for (int i = 0; i < size - 1 - pass; i++) {
+            if (latencies[i] > latencies[i + 1]) {
+                int temp = latencies[i];
+                latencies[i] = latencies[i + 1];
+                latencies[i + 1] = temp;
+            
+            
+            }
+        }
+    if (!swapped) {
+        break;
+    }
+    }
 }
 
-}
+
 
 int main()
 {
@@ -59,13 +67,10 @@ int main()
         total += latencies[i];
     }
 
-int max_latency_index = find_max_latency_index(latencies, size);
-int min_latency_index = find_min_latency_index(latencies, size);
-int sorted_input[3]   = sort_algorithm(latencies, size);
-
-
-int max_latency = latencies[max_latency_index];
-int min_latency = latencies[min_latency_index];
+    int max_latency_index = find_max_latency_index(latencies, size);
+    int min_latency_index = find_min_latency_index(latencies, size);
+    int max_latency = latencies[max_latency_index];
+    int min_latency = latencies[min_latency_index];
 
    
 
@@ -77,6 +82,8 @@ int min_latency = latencies[min_latency_index];
         }
     }
 
+    sort_latencies(latencies, size);
+
     std::cout << "Max latency: " << max_latency << std::endl;
     std::cout << "Min latency: " << min_latency << std::endl;
     std::cout << "Average latency: " << average_latency << std::endl;
@@ -85,7 +92,7 @@ int min_latency = latencies[min_latency_index];
     std::cout << "Min latency index: " << min_latency_index << std::endl;
     std::cout << "Sorted input: ";
     for (int i = 0; i < size; i++) {
-        std::cout << sorted_input[i] << " ";
+        std::cout << latencies[i] << " ";
     }
     std::cout << std::endl;
     
